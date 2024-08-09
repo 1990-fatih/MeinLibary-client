@@ -1,10 +1,12 @@
 import "./App.css";
+
 import AddBook from "./components/AddBook";
+import Books from './components/Books'
 
 function App() {
   return (
     <div className="App">
-      <nav>
+     
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <a class="navbar-brand" href="#">
             ACR-BOOKS
@@ -82,8 +84,9 @@ function App() {
             </form>
           </div>
         </nav>
-      </nav>
+  
       <AddBook />
+      <Books />
     </div>
   );
 }
