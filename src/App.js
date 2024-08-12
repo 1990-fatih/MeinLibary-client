@@ -1,9 +1,31 @@
 import "./App.css";
-
+import React, {useState,useEffect} from "react";
 import AddBook from "./components/AddBook";
 import Books from './components/Books'
 
 function App() {
+
+  const [books, setBooks] = useState([])
+  const [book, setBook] = useState([{
+    bookName:"",
+    author:"",
+    quantity:"",
+    department:"",
+    comments:""
+  }])
+
+  useEffect(()=>{
+
+    fetch('/books').then(res=>{
+
+    if(res.ok){
+      return res.json()
+    }}).then(jsonRes => setBooks(jsonRes))
+  })
+
+ const handleChange =(e) => {
+  const {name, value}
+ }
   return (
     <div className="App">
      
@@ -85,8 +107,8 @@ function App() {
           </div>
         </nav>
   
-      <AddBook />
-      <Books />
+      <AddBook book={book}/>
+      <Books books={books}/>
     </div>
   );
 }

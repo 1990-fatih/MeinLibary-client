@@ -1,6 +1,6 @@
 import React from "react";
 
-function AddBook() {
+function AddBook(book) {
   return (
     <div>
       <div className="container w-50 mt-5" border border-secondary>
@@ -10,7 +10,7 @@ function AddBook() {
               Book Name
             </label>
             <input
-              type="text"
+              type="text" value={book.bookName} onChange={handleChange}
               name="bookName"
               className="form-control"
               id="formGroupExampleInput"
@@ -22,11 +22,11 @@ function AddBook() {
               Autor
             </label>
             <input
-              type="text"
-              name="autor"
+              type="text" value={book.author} onChange={handleChange}
+              name="author"
               className="form-control"
               id="formGroupExampleInput"
-              placeholder="Autor"
+              placeholder="Author"
             />
           </div>
           <div className="mb-3">
@@ -34,14 +34,14 @@ function AddBook() {
               Quantity
             </label>
             <input
-              type="number"
+              type="number" value={book.quantity} onChange={handleChange}
               name="quantity"
               className="form-control"
               id="formGroupExampleInput"
               placeholder="Quantity"
             />
           </div>
-          <select label="Select your Departments" className="form-select" aria-label="">
+          <select  name="department" label="Select your Departments" className="form-select" value={book.department} onChange={handleChange} aria-label="">
             <option selected>Departments</option>
             <option value="1">History & Criticism</option>
             <option value="2">Religios</option>
@@ -49,7 +49,7 @@ function AddBook() {
             <option value="3">Study and Teaching</option>
           </select>
           <div className="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">
+            <label for="exampleFormControlTextarea1" name="comments" value={book.comments} onChange={handleChange} class="form-label">
               Comments
             </label>
             <textarea
