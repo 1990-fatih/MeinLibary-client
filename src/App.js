@@ -2,6 +2,7 @@ import "./App.css";
 import React, {useState,useEffect} from "react";
 import AddBook from "./components/AddBook";
 import Books from './components/Books'
+import axios from 'axios'
 
 function App() {
 
@@ -24,7 +25,31 @@ function App() {
   })
 
  const handleChange =(e) => {
-  const {name, value}
+  const {name, value} = e.target;
+  setBook(prevInput => 
+  {
+    return({
+      ...prevInput,
+      [name]:value
+    })
+  }
+  )
+ }
+
+ const addBook = (e)=>
+ {
+  e.preventDefault();
+  const newBook = {
+    bookName: book.bookName,
+    author:book.book.author,
+    quantity:book.book.quantity,
+    department:book.book.department,
+    comments:book.book.comments
+
+  }
+  axios.post('/newbook', newBook )
+  alert (`´The Book ${book.bookName} is added`)
+  setBook({bookName:"",author:"",quantity:"",department:"",comments:""})
  }
   return (
     <div className="App">
@@ -107,7 +132,7 @@ function App() {
           </div>
         </nav>
   
-      <AddBook book={book}/>
+      <AddBook book={book} handleChange={handleChange} addBook={addBook}/>
       <Books books={books}/>
     </div>
   );

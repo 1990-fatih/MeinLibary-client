@@ -19,7 +19,7 @@ export default function Books({ books }) {
         <tbody>
           {
           books.map((book, index)=>{
-             return(<tr scope="col" key={index}>
+             return(<tr key={index}>
                     <td>{book._id}</td>
                     <td>{book.bookName}</td>
                     <td data-toggle="tooltip" data-placement="top" title={book.comments} ></td>
