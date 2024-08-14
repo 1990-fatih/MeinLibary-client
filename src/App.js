@@ -16,45 +16,42 @@ function App() {
     },
   ]);
 
-  useEffect(() => {
-    fetch("/books")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then((jsonRes) => setBooks(jsonRes));
-  });
+  useEffect(()=>{
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setBook((prevInput) => {
-      return {
-        ...prevInput,
-        [name]: value
-      };
-    });
-  };
+    fetch('/books').then(res=>{
 
-  const addBook = (e) => {
-    e.preventDefault();
-    const newBook = {
-      bookName: book.bookName,
-      author: book.book.author,
-      quantity: book.book.quantity,
-      department: book.book.department,
-      comments: book.book.comments,
-    };
-    axios.post("/newbook", newBook);
-    alert(`´The Book ${book.bookName} is added`);
-    setBook({
-      bookName: "",
-      author: "",
-      quantity: "",
-      department: "",
-      comments: "",
-    });
-  };
+    if(res.ok){
+      return res.json()
+    }}).then(jsonRes => setBooks(jsonRes))
+  })
+
+ const handleChange =(e) => {
+  const {name, value} = e.target;
+  setBook(prevInput => 
+  {
+    return({
+      ...prevInput,
+      [name]:value
+    })
+  }
+  )
+ }
+
+ const addBook = (e)=>
+ {
+  e.preventDefault();
+  const newBook = {
+    bookName: book.bookName,
+    author:book.author,
+    quantity:book.quantity,
+    department:book.department,
+    comments:book.comments
+
+  }
+  axios.post('/newbook', newBook )
+  alert (`´The Book ${book.bookName} is added`)
+  setBook({bookName:"",author:"",quantity:"",department:"",comments:""})
+ }
   return (
     <div className="App">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

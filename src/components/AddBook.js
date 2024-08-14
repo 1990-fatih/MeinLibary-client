@@ -1,6 +1,6 @@
 import React from "react";
 
-function AddBook(book, handleChange, addBook) {
+export default function AddBook({book,handleChange,addBook} ) {
   return (
     <div>
       <div className="container w-50 mt-5" border border-secondary>
@@ -65,4 +65,3 @@ function AddBook(book, handleChange, addBook) {
   );
 }
 
-export default AddBook;
