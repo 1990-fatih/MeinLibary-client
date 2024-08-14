@@ -3,6 +3,10 @@ import React, { useState, useEffect } from "react";
 import AddBook from "./components/AddBook";
 import Books from "./components/Books";
 import axios from "axios";
+import { BrowserRouter as Rauter, Routes, Route,Link, Router } from "react-router-dom";
+import Switch from "react-switch";
+
+
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -52,12 +56,30 @@ function App() {
   alert (`´The Book ${book.bookName} is added`)
   setBook({bookName:"",author:"",quantity:"",department:"",comments:""})
  }
+
+ const deleteBook =(id) =>{
+  axios.delete(`delete/${id}`);
+  alert(`The book with id ${id} is deleted`)
+ }
+
+ const lendBook =(id) =>{
+  axios.put('lend/'+id);
+  alert(`The book with id ${id} is lended`)
+ }
+
+ const backBook =(id) =>{
+  axios.put('back/'+id);
+  alert(`The book with id ${id} is back`)
+ }
   return (
     <div className="App">
+      <Router>
+
+      
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">
+        <Link class="navbar-brand" to="/">
           ACR-BOOKS
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -73,14 +95,14 @@ function App() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/books">
                 Books <span className="sr-only">(current)</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/adbook">
                 AddBook
-              </a>
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -128,9 +150,17 @@ function App() {
           </form>
         </div>
       </nav>
+      <Switch>
+      <Router exact path="/">
+      <Books books={books} lendBook={lendBook} deleteBook={deleteBook} backBook={backBook} />
 
+      </Router>
+      <Router path="/adbook">
       <AddBook book={book} handleChange={handleChange} addBook={addBook} />
-      <Books books={books} />
+
+      </Router>
+      </Switch>
+      </Router>
     </div>
   );
 }
