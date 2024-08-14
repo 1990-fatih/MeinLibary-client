@@ -41,10 +41,10 @@ function App() {
   e.preventDefault();
   const newBook = {
     bookName: book.bookName,
-    author:book.book.author,
-    quantity:book.book.quantity,
-    department:book.book.department,
-    comments:book.book.comments
+    author:book.author,
+    quantity:book.quantity,
+    department:book.department,
+    comments:book.comments
 
   }
   axios.post('/newbook', newBook )
